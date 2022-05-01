@@ -6,6 +6,11 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Box: typeof import('./components/Box.vue')['default']
+    BrowserAddressBar: typeof import('./components/Browser/BrowserAddressBar.vue')['default']
+    BrowserAddressDropdown: typeof import('./components/Browser/BrowserAddressDropdown.vue')['default']
+    BrowserAddressMedia: typeof import('./components/Browser/BrowserAddressMedia.vue')['default']
+    BrowserContent: typeof import('./components/Browser/BrowserContent.vue')['default']
+    BrowserView: typeof import('./components/Browser/BrowserView.vue')['default']
     ComponentsMenu: typeof import('./components/ComponentsMenu.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']

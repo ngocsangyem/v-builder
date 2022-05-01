@@ -74,11 +74,11 @@ export const useMenuStore = defineStore('menu', () => {
 			children: []
 		},
 	]);
-	const usedNav = computed(() => menuNav.value);
+	const getMenu = computed(() => menuNav.value);
 
 	return {
 		menuNav,
-		usedNav,
+		getMenu,
 	};
 });
 

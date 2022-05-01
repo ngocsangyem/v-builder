@@ -4,20 +4,28 @@ import { IPage } from '@/@types/page';
 export const usePageStore = defineStore('pages', () => {
 	const pages = ref<IPage[]>([
 		{
-			name: 'Home',
+			name: 'index.html',
+			components: ['Home'],
+		},
+		{
+			name: 'about.html',
+			components: ['Home'],
+		},
+		{
+			name: 'detail.html',
 			components: ['Home'],
 		}
 	]);
-	const usedPages = computed(() => pages.value);
+	const getPages = computed(() => pages.value);
 
-	function addPages(newPages: IPage) {
+	function addPage(newPages: IPage) {
 		pages.value.push(newPages)
 	}
 
 	return {
 		pages,
-		usedPages,
-		addPages
+		getPages,
+		addPage
 	};
 });
 
