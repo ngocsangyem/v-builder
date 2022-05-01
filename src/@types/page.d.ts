@@ -1,4 +1,5 @@
 export interface IPage {
 	name: string;
-	components: string[]
+	components: string[],
+	id: string,
 };

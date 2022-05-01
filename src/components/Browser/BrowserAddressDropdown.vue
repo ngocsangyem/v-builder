@@ -1,6 +1,8 @@
 <template>
 	<div class="address-dropdown">
-		<div class="backdrop fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"></div>
+		<div
+			class="backdrop fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
+		></div>
 		<button
 			type="button"
 			aria-label="open dropdown button"
@@ -18,15 +20,43 @@
 		</button>
 		<div class="dropdown-menu">
 			<div class="page-list max-h-72 overflow-y-auto">
-				<div class="page-item" v-for="page in pageList" :key="page.name" >
+				<div
+					class="page-item relative"
+					v-for="(page, index) in usePages$.getPages"
+					:key="page.name"
+				>
 					<span @click="setDropdownLabel(page.name)">
-					{{ page.name }}
-				</span>
+						{{ page.name }}
+					</span>
+					<div class="page-item-actions">
+						<button type="button" @click="duplicatePage(page.id)">
+							<i class="i-ion-copy-outline"></i>
+						</button>
+						<template v-if="index !== 0">
+							<button
+								type="button"
+								@click="editPageName(page.id, 'hehe')"
+							>
+								<i class="i-ion-pencil-outline"></i>
+							</button>
+							<button type="button" @click="removePage(page.id)">
+								<i class="i-ion-trash-outline"></i>
+							</button>
+						</template>
+					</div>
 				</div>
 			</div>
-			<div class="add-page-control">
-				<input ref="pageInput" type="text" placeholder="Enter page name" class="bg-transparent focus:outline-none w-full pr-2 mr-2" v-on:keyup.enter="createPage">
-				<button type="button" class="text-blue-400" @click="createPage">Save</button>
+			<div class="add-page-control" v-if="isAddMorePage">
+				<input
+					ref="pageInput"
+					type="text"
+					placeholder="Enter page name"
+					class="bg-transparent focus:outline-none w-full pr-2 mr-2"
+					v-on:keyup.enter="createPage"
+				/>
+				<button type="button" class="text-blue-400" @click="createPage">
+					Save
+				</button>
 			</div>
 			<footer>
 				<button class="btn-action" type="button" @click="addMorePage">
@@ -45,15 +75,16 @@
 </template>
 
 <script setup lang="ts">
+import { v4 as uuidv4 } from 'uuid';
 import { usePageStore } from '@/stores/pages';
 import { IPage } from '@/@types/page';
 
 const usePages$ = usePageStore();
-const pageList = $ref(usePages$.getPages)
+const { removePage, editPageName, duplicatePage, addPage } = usePages$;
 const openDropdown = ref(false);
 const dropdownLabel = ref('index.html');
 const isAddMorePage = ref(false);
-const pageInput = ref<HTMLInputElement>()
+const pageInput = ref<HTMLInputElement>();
 
 const toggleDropdown = () => {
 	openDropdown.value = !openDropdown.value;
@@ -68,12 +99,13 @@ const createPage = () => {
 	const pageName = pageInput.value?.value;
 	if (!pageName) return;
 	const newPage: IPage = {
+		id: uuidv4(),
 		name: `${pageName}.html`,
-		components: []
-	}
-	usePages$.addPage(newPage);
+		components: [],
+	};
+	addPage(newPage);
 	(pageInput.value as HTMLInputElement).value = '';
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -83,6 +115,10 @@ const createPage = () => {
 	@apply h-8;
 	@apply text-center;
 	@apply relative;
+
+	i {
+		@apply inline-block;
+	}
 
 	.trigger-dropdown {
 		@apply text-sm;
@@ -128,6 +164,34 @@ const createPage = () => {
 		@apply py-2 px-4;
 		@apply text-left;
 		@apply flex items-center;
+	}
+
+	.page-item-actions {
+		@apply flex;
+		@apply items-center;
+		@apply gap-2;
+		@apply text-sm;
+		@apply absolute;
+		@apply right-3;
+		@apply opacity-0;
+		@apply invisible;
+		@apply transition;
+		top: 50%;
+		transform: translateY(-50%);
+
+		button {
+			@apply flex;
+			@apply items-center;
+		}
+	}
+
+	.page-item {
+		&:hover {
+			.page-item-actions {
+				@apply opacity-100;
+				@apply visible;
+			}
+		}
 	}
 }
 

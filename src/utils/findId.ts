@@ -1,0 +1,1 @@
+export const findId = <T extends { id: string }>(id: string, arr: T[]) => arr.find(item => item.id === id);
