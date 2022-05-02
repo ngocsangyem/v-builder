@@ -1,6 +1,7 @@
 <template>
-	<div class="browser-content">
-		
+	<div class="browser-content relative">
+		<div class="browser-content-container h-full">
+		</div>
 	</div>
 </template>
 
@@ -8,6 +9,5 @@
 
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
 </style>

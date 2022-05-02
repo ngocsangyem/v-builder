@@ -6,11 +6,18 @@
 			<span class="dot bg-green-400"></span>
 		</div>
 		<browser-address-dropdown></browser-address-dropdown>
-		<browser-address-media></browser-address-media>
+		<browser-address-media @screen-change="screenChange"></browser-address-media>
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ScreenType } from '@/types/screen';
+
+const emit = defineEmits(['screenChange'])
+const screenChange = (screen: ScreenType) => {
+	emit('screenChange', screen)
+};
+</script>
 
 <style lang="scss" scoped>
 .browser-address-bar {

@@ -2,6 +2,7 @@
 	<div class="address-dropdown">
 		<div
 			class="backdrop fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
+			v-if="openDropdown"
 		></div>
 		<button
 			type="button"
@@ -18,46 +19,26 @@
 				}"
 			></i>
 		</button>
-		<div class="dropdown-menu">
+		<div class="dropdown-menu" v-if="openDropdown">
 			<div class="page-list max-h-72 overflow-y-auto">
-				<div
-					class="page-item relative"
+				<browser-address-dropdown-item
 					v-for="(page, index) in usePages$.getPages"
-					:key="page.name"
-				>
-					<span @click="setDropdownLabel(page.name)">
-						{{ page.name }}
-					</span>
-					<div class="page-item-actions">
-						<button type="button" @click="duplicatePage(page.id)">
-							<i class="i-ion-copy-outline"></i>
-						</button>
-						<template v-if="index !== 0">
-							<button
-								type="button"
-								@click="editPageName(page.id, 'hehe')"
-							>
-								<i class="i-ion-pencil-outline"></i>
-							</button>
-							<button type="button" @click="removePage(page.id)">
-								<i class="i-ion-trash-outline"></i>
-							</button>
-						</template>
-					</div>
-				</div>
+					:key="page.id"
+					:page="page"
+					:index="index"
+					@duplicate="duplicatePage(page.id)"
+					@remove="removePage(page.id)"
+					@click-label="setDropdownLabel(page.name)"
+					@save="onEditPageName"
+					@enter="onEditPageName"
+				></browser-address-dropdown-item>
 			</div>
-			<div class="add-page-control" v-if="isAddMorePage">
-				<input
-					ref="pageInput"
-					type="text"
-					placeholder="Enter page name"
-					class="bg-transparent focus:outline-none w-full pr-2 mr-2"
-					v-on:keyup.enter="createPage"
-				/>
-				<button type="button" class="text-blue-400" @click="createPage">
-					Save
-				</button>
-			</div>
+			<field-save
+				placeholder="Enter page name"
+				v-if="isAddMorePage"
+				@enter="createPage"
+				@save="createPage"
+			></field-save>
 			<footer>
 				<button class="btn-action" type="button" @click="addMorePage">
 					<template v-if="!isAddMorePage">
@@ -88,6 +69,7 @@ const pageInput = ref<HTMLInputElement>();
 
 const toggleDropdown = () => {
 	openDropdown.value = !openDropdown.value;
+	isAddMorePage.value = false;
 };
 const setDropdownLabel = (label: string) => {
 	dropdownLabel.value = label;
@@ -105,6 +87,10 @@ const createPage = () => {
 	};
 	addPage(newPage);
 	(pageInput.value as HTMLInputElement).value = '';
+};
+const onEditPageName = ({ value, page }: { value: string; page: IPage }) => {
+	if (!value) return;
+	editPageName(page.id, value);
 };
 </script>
 
@@ -157,51 +143,6 @@ const createPage = () => {
 		@apply flex;
 		@apply justify-center;
 		@apply items-center;
-	}
-
-	.add-page-control {
-		@apply bg-gray-200;
-		@apply py-2 px-4;
-		@apply text-left;
-		@apply flex items-center;
-	}
-
-	.page-item-actions {
-		@apply flex;
-		@apply items-center;
-		@apply gap-2;
-		@apply text-sm;
-		@apply absolute;
-		@apply right-3;
-		@apply opacity-0;
-		@apply invisible;
-		@apply transition;
-		top: 50%;
-		transform: translateY(-50%);
-
-		button {
-			@apply flex;
-			@apply items-center;
-		}
-	}
-
-	.page-item {
-		&:hover {
-			.page-item-actions {
-				@apply opacity-100;
-				@apply visible;
-			}
-		}
-	}
-}
-
-.page-list {
-	span {
-		@apply block;
-		@apply py-2 px-4;
-		@apply text-left;
-		@apply border-b border-solid border-gray-100;
-		@apply cursor-pointer;
 	}
 }
 </style>

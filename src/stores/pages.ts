@@ -33,16 +33,31 @@ export const usePageStore = defineStore('pages', () => {
 	const editPageName = (id: string, newPageName: string) => {
 		const page = findId(id, pages.value);
 		if (page) {
-			page.name = newPageName;
+			page.name = `${newPageName}.html`;
 		}
 	}
 
 	const duplicatePage = (id: string) => {
 		const page = findId(id, pages.value);
-		if (page) {
-			const newPage = { ...page, name: `${page.name}_copy.html`, id: uuidv4() };
-			pages.value.push(newPage)
+		if (!page) return;
+		let newPage;
+		if (page?.clone_from) {
+			const originPage = findId(page.clone_from, pages.value);
+			newPage = { 
+				...page,
+				name: `${originPage?.name}_copy.html`,
+				id: uuidv4(),
+				clone_from: page.clone_from
+			};
+		} else {
+			newPage = { 
+				...page,
+				name: `${page.name}_copy.html`,
+				id: uuidv4(),
+				clone_from: page.id
+			};
 		}
+		pages.value.push(newPage as IPage);
 	}
 
 	return {
@@ -51,7 +66,7 @@ export const usePageStore = defineStore('pages', () => {
 		addPage,
 		removePage,
 		editPageName,
-		duplicatePage
+		duplicatePage,
 	};
 });
 
