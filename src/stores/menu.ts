@@ -1,17 +1,38 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { IComponentsMenu } from '@/@types/menu';
+import { CardsComponent, NavigationComponent } from '../__mocks__/components';
 
 export const useMenuStore = defineStore('menu', () => {
 	const menuNav = ref<IComponentsMenu[]>([
 		{
 			title: 'App',
 			count: 0,
-			children: []
+			children: [
+				{
+					title: 'Card',
+					count: 10,
+					type: 'card',
+					components: CardsComponent
+				},
+				{
+					title: 'Navigation',
+					count: 10,
+					type: 'card',
+					components: NavigationComponent
+				}
+			]
 		},
 		{
 			title: 'Blog',
 			count: 0,
-			children: []
+			children: [
+				// {
+				// 	title: 'Navigation',
+				// 	count: 10,
+				// 	type: 'card',
+				// 	components: NavigationComponent
+				// }
+			]
 		},
 		{
 			title: 'Content and layout',
@@ -26,7 +47,12 @@ export const useMenuStore = defineStore('menu', () => {
 		{
 			title: 'Data display',
 			count: 0,
-			children: []
+			children: [{
+				title: 'Navigation',
+				count: 10,
+				type: 'card',
+				components: NavigationComponent
+			}]
 		},
 		{
 			title: 'Decorative background',

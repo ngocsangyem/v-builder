@@ -1,9 +1,5 @@
 <template>
 	<div class="address-dropdown">
-		<div
-			class="backdrop fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
-			v-if="openDropdown"
-		></div>
 		<button
 			type="button"
 			aria-label="open dropdown button"
@@ -19,7 +15,7 @@
 				}"
 			></i>
 		</button>
-		<div class="dropdown-menu" v-if="openDropdown">
+		<div class="dropdown-menu shadow-md" v-if="openDropdown">
 			<div class="page-list max-h-72 overflow-y-auto">
 				<browser-address-dropdown-item
 					v-for="(page, index) in usePages$.getPages"
@@ -57,9 +53,11 @@
 
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid';
+import { useAppStore } from '@/stores/app';
 import { usePageStore } from '@/stores/pages';
 import { IPage } from '@/@types/page';
 
+const $useApp = useAppStore();
 const usePages$ = usePageStore();
 const { removePage, editPageName, duplicatePage, addPage } = usePages$;
 const openDropdown = ref(false);
@@ -70,6 +68,7 @@ const pageInput = ref<HTMLInputElement>();
 const toggleDropdown = () => {
 	openDropdown.value = !openDropdown.value;
 	isAddMorePage.value = false;
+	$useApp.setBackdrop(openDropdown.value);
 };
 const setDropdownLabel = (label: string) => {
 	dropdownLabel.value = label;
