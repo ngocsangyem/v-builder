@@ -1,5 +1,5 @@
 <template>
-	<div class="browser-address-bar flex py-3 px-4 justify-between">
+	<div class="browser-address-bar flex py-3 px-4 justify-between text-gray-900">
 		<div class="address-dots">
 			<span class="dot bg-red-400"></span>
 			<span class="dot bg-amber-400"></span>

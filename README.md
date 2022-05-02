@@ -19,7 +19,7 @@
 
 ### 🏠 [Homepage](https://github.com/ngocsangyem/v-builder#readme)
 
-### ✨ [Demo](https://github.com/ngocsangyem/v-builder)
+### ✨ [Demo](https://v-builder.vercel.app/)
 
 ## Features
 
