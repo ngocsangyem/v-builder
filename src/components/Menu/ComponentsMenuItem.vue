@@ -13,6 +13,7 @@
 					v-for="subNavItem in menu.children"
 					:key="subNavItem.title"
 					:menu="subNavItem"
+					:components="subNavItem.components"
 				></components-menu-sub-item>
 			</box>
 		</div>

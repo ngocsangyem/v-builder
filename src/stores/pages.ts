@@ -8,17 +8,17 @@ export const usePageStore = defineStore('pages', () => {
 		{
 			id: '640ba4ad-9777-460d-8cd9-ca74b2ed07ea',
 			name: 'index.html',
-			components: ['Home'],
+			components: [],
 		},
 		{
 			id: '11ad3e8c-2744-4250-afc6-7f32eefa5a14',
 			name: 'about.html',
-			components: ['Home'],
+			components: [],
 		},
 		{
 			id: 'e5a2ba0a-c76c-4b6e-a7ae-0a523480967d',
 			name: 'detail.html',
-			components: ['Home'],
+			components: [],
 		}
 	]);
 	const currentPage = ref<IPage>(pages.value[0]);

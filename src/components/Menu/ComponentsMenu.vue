@@ -1,5 +1,5 @@
 <template>
-	<aside class="h-full w-48 relative z-20">
+	<aside class="h-full w-48 sticky top-0 left-0 z-20">
 		<box class="relative px-0">
 			<ul class="main-menu flex flex-col">
 				<components-menu-item

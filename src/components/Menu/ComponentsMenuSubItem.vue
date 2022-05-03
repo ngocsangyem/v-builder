@@ -13,45 +13,38 @@
 			></i>
 		</span>
 		<div class="sub-item-content p-3" v-if="expanded">
-			<div class="sub-item-content-container overflow-y-auto">
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Blanditiis, nemo. Possimus esse nihil eveniet dolor enim
-					sint tenetur vero natus dolore! Numquam illo provident iure
-					beatae ullam, molestiae praesentium optio doloribus
-					exercitationem reprehenderit laborum officiis eveniet
-					similique id dolore eius, excepturi eligendi facere dolorem
-					placeat hic. Eum ea aperiam ducimus iure provident, soluta
-					vero alias ipsa quod temporibus. Tempora distinctio eius
-					minima. Praesentium harum dignissimos velit facilis,
-					temporibus unde pariatur aperiam ratione expedita corporis
-					at, minima fugiat. Recusandae eos itaque iste, rem nihil
-					blanditiis ab doloribus doloremque. Dolor a ut
-					exercitationem esse doloribus magni, dolorem eum commodi
-					sequi consequatur facilis ducimus similique iure omnis
-					recusandae magnam repellendus, impedit cum officia deserunt
-					modi maiores laborum. Vero quasi iusto saepe quo eum totam
-					corporis! Voluptate ex consectetur asperiores nemo vero fuga
-					quas itaque sapiente illo pariatur maiores nisi, totam alias
-					ratione nihil? A, obcaecati nobis totam perspiciatis amet
-					sequi quidem dicta tenetur non praesentium vero veritatis
-					molestiae soluta rem error placeat dolorum, aliquam ipsam!
-					Autem saepe molestias illo ad obcaecati iste, maiores ex
-					incidunt nisi corrupti aspernatur id aut minus et eum
-					voluptatibus atque sed quibusdam ab nobis ducimus
-					reprehenderit. Fugit repellat voluptatibus qui, obcaecati
-					hic enim omnis voluptatum ullam aut esse.
-				</p>
-			</div>
+			<draggable
+				class="sub-item-content-container overflow-y-auto"
+				:list="components"
+				:sort="false"
+				:group="{ name: 'components', pull: 'clone', put: false }"
+				item-key="id"
+			>
+				<template #item="{ element }">
+					<div class="list-group-item relative">
+						<div class="mb-4 rounded-md">
+							<span class="absolute top-0 left-0 z-40 px-2 py-1 mt-2 ml-2 text-xs font-medium text-gray-600 ease-out bg-gray-200 rounded-md">{{ element.title }}</span>
+							<img
+								:src="element.thumbnail"
+								class="w-full h-auto rounded border border-solid border-gray-200"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+				</template>
+			</draggable>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { IComponentItem } from '@/@types/component';
 import { IComponentsMenuChildren } from '@/@types/menu';
+import draggable from 'vuedraggable';
 
 interface Props {
 	menu: IComponentsMenuChildren;
+	components: IComponentItem[];
 }
 const expanded = ref(false);
 const props = defineProps<Props>();
