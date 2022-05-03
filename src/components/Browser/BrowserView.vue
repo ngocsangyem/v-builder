@@ -11,14 +11,20 @@
 			<browser-address-bar
 				@screen-change="onScreenChange"
 			></browser-address-bar>
-			<browser-content class="flex-grow"></browser-content>
+			<template v-for="page in $usePages.getPages" :key="page.id">
+				<browser-content class="flex-grow" v-if="page.id === $usePages.getCurrentPage.id">
+					{{ page.name }}
+				</browser-content>
+			</template>
 		</div>
 	</section>
 </template>
 
 <script setup lang="ts">
+import { usePageStore } from '@/stores/pages';
 import { ScreenType } from '@/@types/screen';
 
+const $usePages = usePageStore();
 const mediaType = ref<ScreenType>('desktop');
 
 const onScreenChange = (screen: ScreenType) => {

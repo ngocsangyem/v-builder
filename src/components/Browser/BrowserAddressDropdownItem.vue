@@ -49,7 +49,7 @@ const emit = defineEmits([
 	'enter',
 ]);
 
-onClickOutside(target, (event) => isEdit.value = false)
+onClickOutside(target, () => isEdit.value = false)
 
 const onDuplicate = () => {
 	emit('duplicate');

@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
 import { v4 as uuidv4 } from 'uuid';
+import { findId } from '../utils/findId';
 import { IPage } from '@/@types/page';
 
 export const usePageStore = defineStore('pages', () => {
@@ -20,7 +21,10 @@ export const usePageStore = defineStore('pages', () => {
 			components: ['Home'],
 		}
 	]);
+	const currentPage = ref<IPage>(pages.value[0]);
+
 	const getPages = computed(() => pages.value);
+	const getCurrentPage = computed(() => currentPage.value);
 
 	const addPage = (newPages: IPage) => {
 		pages.value.push(newPages)
@@ -60,16 +64,26 @@ export const usePageStore = defineStore('pages', () => {
 		pages.value.push(newPage as IPage);
 	}
 
+	const setCurrentPage = (id: string) => {
+		const page = findId(id, pages.value);
+
+		if (page) {
+			currentPage.value = page;
+		}
+	}
+
 	return {
 		pages,
+		currentPage,
 		getPages,
 		addPage,
 		removePage,
 		editPageName,
 		duplicatePage,
+		getCurrentPage,
+		setCurrentPage
 	};
 });
 
 if (import.meta.hot)
 	import.meta.hot.accept(acceptHMRUpdate(usePageStore, import.meta.hot))
-import { findId } from '../utils/findId';

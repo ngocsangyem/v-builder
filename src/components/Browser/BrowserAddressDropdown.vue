@@ -18,13 +18,13 @@
 		<div class="dropdown-menu shadow-md" v-if="openDropdown">
 			<div class="page-list max-h-72 overflow-y-auto">
 				<browser-address-dropdown-item
-					v-for="(page, index) in usePages$.getPages"
+					v-for="(page, index) in $usePages.getPages"
 					:key="page.id"
 					:page="page"
 					:index="index"
 					@duplicate="duplicatePage(page.id)"
 					@remove="removePage(page.id)"
-					@click-label="setDropdownLabel(page.name)"
+					@click-label="onClickDropdown(page)"
 					@save="onEditPageName"
 					@enter="onEditPageName"
 				></browser-address-dropdown-item>
@@ -53,13 +53,11 @@
 
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid';
-import { useAppStore } from '@/stores/app';
 import { usePageStore } from '@/stores/pages';
 import { IPage } from '@/@types/page';
 
-const $useApp = useAppStore();
-const usePages$ = usePageStore();
-const { removePage, editPageName, duplicatePage, addPage } = usePages$;
+const $usePages = usePageStore();
+const { removePage, editPageName, duplicatePage, addPage } = $usePages;
 const openDropdown = ref(false);
 const dropdownLabel = ref('index.html');
 const isAddMorePage = ref(false);
@@ -68,10 +66,11 @@ const pageInput = ref<HTMLInputElement>();
 const toggleDropdown = () => {
 	openDropdown.value = !openDropdown.value;
 	isAddMorePage.value = false;
-	$useApp.setBackdrop(openDropdown.value);
 };
-const setDropdownLabel = (label: string) => {
-	dropdownLabel.value = label;
+const onClickDropdown = (page: IPage) => {
+	dropdownLabel.value = page.name;
+	$usePages.setCurrentPage(page.id);
+	toggleDropdown();
 };
 const addMorePage = () => {
 	isAddMorePage.value = !isAddMorePage.value;

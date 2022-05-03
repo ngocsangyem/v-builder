@@ -14,7 +14,6 @@ declare module '@vue/runtime-core' {
     BrowserView: typeof import('./components/Browser/BrowserView.vue')['default']
     ComponentsMenu: typeof import('./components/Menu/ComponentsMenu.vue')['default']
     ComponentsMenuItem: typeof import('./components/Menu/ComponentsMenuItem.vue')['default']
-    ComponentsMenuSub: typeof import('./components/Menu/ComponentsMenuSubItem.vue')['default']
     ComponentsMenuSubItem: typeof import('./components/Menu/ComponentsMenuSubItem.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
     FieldSave: typeof import('./components/common/FieldSave.vue')['default']
