@@ -25,7 +25,7 @@
 					>
 						<template #item="{ element }">
 							<div class="list-group-item">
-								<img class="w-full" :src="element.thumbnail" alt="" />
+								<tree-node :node="element.html"></tree-node>
 							</div>
 						</template>
 					</draggable>
@@ -39,6 +39,7 @@
 import { usePageStore } from '@/stores/pages';
 import { ScreenType } from '@/@types/screen';
 import draggable from 'vuedraggable';
+import TreeNode from '@/components/TreeNode.vue';
 
 const $usePages = usePageStore();
 const mediaType = ref<ScreenType>('desktop');
