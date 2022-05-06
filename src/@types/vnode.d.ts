@@ -12,7 +12,7 @@ export type Data = Record<string, unknown>;
 export type NormalizedChildren = string | VNode[] | null;
 
 export interface VNode {
-	type: VNodeTypes;
+	type?: VNodeTypes;
 	props?: Record<string, any> | null;
 	children?: NormalizedChildren;
 	shapeFlag?: number;
