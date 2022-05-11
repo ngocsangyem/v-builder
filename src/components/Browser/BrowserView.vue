@@ -39,7 +39,6 @@
 import { usePageStore } from '@/stores/pages';
 import { ScreenType } from '@/@types/screen';
 import draggable from 'vuedraggable';
-import TreeNode from '@/components/TreeNode.vue';
 
 const $usePages = usePageStore();
 const mediaType = ref<ScreenType>('desktop');

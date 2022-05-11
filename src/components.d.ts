@@ -16,11 +16,10 @@ declare module '@vue/runtime-core' {
     ComponentsMenuItem: typeof import('./components/Menu/ComponentsMenuItem.vue')['default']
     ComponentsMenuSubItem: typeof import('./components/Menu/ComponentsMenuSubItem.vue')['default']
     FieldSave: typeof import('./components/common/FieldSave.vue')['default']
-    FriendlyIframe: typeof import('./components/FriendlyIframe.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TreeNode: typeof import('./components/TreeNode.vue')['default']
+    TreeNode: typeof import('./components/common/TreeNode.vue')['default']
   }
 }
 
