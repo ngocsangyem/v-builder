@@ -29,7 +29,7 @@
 							</div>
 						</template>
 					</draggable> -->
-					<browser-iframe :src="`/page/${page.id}`"></browser-iframe>
+					<browser-iframe :src="`/preview/${page.id}`"></browser-iframe>
 				</browser-content>
 			</template>
 		</div>
