@@ -1,7 +1,4 @@
 <script setup lang="ts">
-  import { useAppStore } from '@/stores/app';
-
-  const $useApp = useAppStore();
 </script>
 
 <template>

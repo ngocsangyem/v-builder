@@ -2,13 +2,16 @@ import { acceptHMRUpdate, defineStore } from 'pinia';
 import { v4 as uuidv4 } from 'uuid';
 import { findId } from '../utils/findId';
 import { IPage } from '@/@types/page';
+import { CardsComponent } from '../__mocks__/components';
 
 export const usePageStore = defineStore('pages', () => {
 	const pages = ref<IPage[]>([
 		{
 			id: '640ba4ad-9777-460d-8cd9-ca74b2ed07ea',
 			name: 'index.html',
-			components: [],
+			components: [
+				CardsComponent[0]
+			],
 		},
 		{
 			id: '11ad3e8c-2744-4250-afc6-7f32eefa5a14',

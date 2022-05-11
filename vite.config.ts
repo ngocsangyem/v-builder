@@ -13,7 +13,6 @@ import Inspect from 'vite-plugin-inspect'
 import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
-import presetIcons from '@unocss/preset-icons'
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 

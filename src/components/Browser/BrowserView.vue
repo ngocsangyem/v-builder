@@ -16,7 +16,7 @@
 					class="flex-grow"
 					v-if="page.id === $usePages.getCurrentPage.id"
 				>
-					<draggable
+					<!-- <draggable
 						:list="page.components"
 						handle=".handle"
 						group="components"
@@ -28,7 +28,8 @@
 								<tree-node :node="element.html"></tree-node>
 							</div>
 						</template>
-					</draggable>
+					</draggable> -->
+					<browser-iframe :src="`/page/${page.id}`"></browser-iframe>
 				</browser-content>
 			</template>
 		</div>
