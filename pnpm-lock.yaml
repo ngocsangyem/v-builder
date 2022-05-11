@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@antfu/eslint-config': ^0.20.6
+  '@evilkiwi/embed': ^1.0.25
   '@iconify-json/carbon': ^1.1.3
   '@iconify-json/ion': ^1.1.1
   '@intlify/vite-plugin-vue-i18n': ^4.0.0
@@ -55,6 +56,7 @@ specifiers:
   vuedraggable: ^4.1.0
 
 dependencies:
+  '@evilkiwi/embed': 1.0.25
   '@vueuse/core': 8.3.0_vue@3.2.33
   '@vueuse/head': 0.7.6_vue@3.2.33
   nprogress: 0.2.0
@@ -1403,6 +1405,17 @@ packages:
       - supports-color
     dev: true
 
+  /@evilkiwi/embed/1.0.25:
+    resolution: {integrity: sha512-Lyhax5daoC4101wDYNBSzlRIP3Nnn1haoDswfZJmcxx3AJqdRNrI8hzhoPm0R48a1W+YhSEogViOHNmMyZ1jlA==}
+    dependencies:
+      '@evilkiwi/logger': 1.0.5
+      nanoevents: 6.0.2
+    dev: false
+
+  /@evilkiwi/logger/1.0.5:
+    resolution: {integrity: sha512-lCdKCM6ZbaZuVxqbMVf8okk0a+sh0oQULbhIRAKCSdFJWOP6Tx5e1yHqrY0OFPqCXZwtV48KT+vXRZGe71Bz5Q==}
+    dev: false
+
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
     engines: {node: '>=10.10.0'}
@@ -1447,8 +1460,8 @@ packages:
       - supports-color
     dev: true
 
-  /@intlify/bundle-utils/3.0.0_vue-i18n@9.1.9:
-    resolution: {integrity: sha512-y43Z5Q3ZJvxqtD8xUH6U3yrlZeay7ZTqkzv1GQ4b0mGQtk5uptOT9Ra4qvGuUv8QyPQsortrA/OHWUD5ax5ZNQ==}
+  /@intlify/bundle-utils/3.1.0_vue-i18n@9.1.9:
+    resolution: {integrity: sha512-ghlJ0kR2cCQ8D+poKknC0Xx0ncOt3J3os7CcIAqqIWVF7k6AtGoCDnIru+YzlZcvFRNmP9wEZ7jKliojCdAWNg==}
     engines: {node: '>= 12'}
     peerDependencies:
       petite-vue-i18n: '*'
@@ -1540,7 +1553,7 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/bundle-utils': 3.0.0_vue-i18n@9.1.9
+      '@intlify/bundle-utils': 3.1.0_vue-i18n@9.1.9
       '@intlify/shared': 9.2.0-beta.35
       '@rollup/pluginutils': 4.2.1
       debug: 4.3.4
@@ -5400,6 +5413,11 @@ packages:
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
+
+  /nanoevents/6.0.2:
+    resolution: {integrity: sha512-FRS2otuFcPPYDPYViNWQ42+1iZqbXydinkRHTHFxrF4a1CpBfmydR9zkI44WSXAXCyPrkcGtPk5CnpW6Y3lFKQ==}
+    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+    dev: false
 
   /nanoid/3.3.3:
     resolution: {integrity: sha512-p1sjXuopFs0xg+fPASzQ28agW1oHD7xDsd9Xkf3T15H3c/cifrFHVwrh74PdoklAPi+i7MdRsE47vm2r6JoB+w==}
