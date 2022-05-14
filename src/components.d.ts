@@ -11,7 +11,6 @@ declare module '@vue/runtime-core' {
     BrowserAddressDropdownItem: typeof import('./components/Browser/BrowserAddressDropdownItem.vue')['default']
     BrowserAddressMedia: typeof import('./components/Browser/BrowserAddressMedia.vue')['default']
     BrowserContent: typeof import('./components/Browser/BrowserContent.vue')['default']
-    BrowserIframe: typeof import('./components/Browser/BrowserIframe.vue')['default']
     BrowserView: typeof import('./components/Browser/BrowserView.vue')['default']
     ComponentsMenu: typeof import('./components/Menu/ComponentsMenu.vue')['default']
     ComponentsMenuItem: typeof import('./components/Menu/ComponentsMenuItem.vue')['default']

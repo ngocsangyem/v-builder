@@ -10,7 +10,7 @@ export const usePageStore = defineStore('pages', () => {
 			id: '640ba4ad-9777-460d-8cd9-ca74b2ed07ea',
 			name: 'index.html',
 			components: [
-				CardsComponent[0]
+				// CardsComponent[0]
 			],
 		},
 		{
