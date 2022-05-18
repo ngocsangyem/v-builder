@@ -41,9 +41,7 @@ export default defineConfig({
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     Unocss(),
-    mpa({
-      scanDir: 'src/views',
-    }),
+    mpa(),
   ],
 
   // https://github.com/vitest-dev/vitest
