@@ -14,8 +14,3 @@
     @apply bg-gray-100;
   }
 </style>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>
