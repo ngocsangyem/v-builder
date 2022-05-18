@@ -29,9 +29,7 @@
 							</div>
 						</template>
 					</draggable> -->
-					<VFrame class="w-full h-full">
-						<h1>hello world</h1>
-					</VFrame>
+					<iframe src="/preview/index.html" class="w-full h-full bg-white"></iframe>
 				</browser-content>
 			</template>
 		</div>
@@ -41,7 +39,6 @@
 <script setup lang="ts">
 import { usePageStore } from '@/stores/pages';
 import { ScreenType } from '@/@types/screen';
-import VFrame from "@/components/common/VFrame.vue";
 import draggable from 'vuedraggable';
 
 const $usePages = usePageStore();

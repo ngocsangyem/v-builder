@@ -1,17 +1,18 @@
 <script setup lang="ts">
-// https://github.com/vueuse/head
-// you can use this to manipulate the document head in any components,
-// they will be rendered correctly in the html results with vite-ssg
-// useHead({
-//   title: 'V-Builder',
-//   meta: [
-//     { name: 'description', content: 'page builder using Vue' },
-//   ],
-// })
 </script>
 
 <template>
-  <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
-    <router-view />
-  </main>
+	<main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
+		<div class="flex gap-4">
+			<!-- <div class="backdrop z-30 fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50" v-if="$useApp.getBackdrop"></div> -->
+			<components-menu></components-menu>
+			<browser-view></browser-view>
+		</div>
+	</main>
 </template>
+
+<style lang="scss">
+  body {
+    @apply bg-gray-100;
+  }
+</style>
